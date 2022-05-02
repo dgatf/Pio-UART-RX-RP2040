@@ -4,8 +4,8 @@ A pio program that implements the UART protocol, for reception only, for the RP2
 
 How to use it:
 
-- With SDK. Add *uart_rx.pio* to your project. Modify CMakeLists.txt. Add *pico_generate_pio_header* and the required libraries (pico_stdlib, hardware_irq, hardware_pio, hardware_clocks). See [CMakeLists.txt](sdk/CMakeLists.txt)
-- With Arduino. Add *uart_rx.pio.h* to your project  
+- With SDK. Add *uart_rx.pio, uart_rx_pio.h and uart_rx_pio.c* to your project. Modify CMakeLists.txt. Add *pico_generate_pio_header* and the required libraries (pico_stdlib, hardware_irq, hardware_pio, hardware_clocks). See [CMakeLists.txt](sdk/CMakeLists.txt)
+- With Arduino. Add *uart_rx.pio.h, uart_rx_pio.h and uart_rx_pio.c* to your project  
 - If needed, change the state machine irq with IRQ_NUM. Valid values 0 to 3. Only change if conflicts with other state machines irqs.
 
 Functions:  

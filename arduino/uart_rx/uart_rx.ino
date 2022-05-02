@@ -16,7 +16,10 @@
  * -------------------------------------------------------------------------------
  */
 
-#include "uart_rx.pio.h"
+extern "C"
+{
+#include "uart_rx_pio.h"
+}
 
 static void rx_handler(uint8_t data)
 {
@@ -32,7 +35,7 @@ void setup()
     uint pin = 7;          //
     uint irq = PIO0_IRQ_0; // values for pio0: PIO0_IRQ_0, PIO0_IRQ_1. values for pio1: PIO1_IRQ_0, PIO1_IRQ_1
     uint baudrate = 9600;
-    
+
     sm = uart_rx_init(pio, pin, baudrate, irq);
     uart_rx_set_handler(rx_handler);
 }

@@ -16,7 +16,7 @@
  * -------------------------------------------------------------------------------
  */
 
-#include "uart_rx.pio.h"
+#include "uart_rx_pio.h"
 
 static void rx_handler(uint8_t data)
 {
