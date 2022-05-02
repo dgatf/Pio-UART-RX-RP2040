@@ -28,12 +28,12 @@ int main()
     stdio_init_all();
 	
     PIO pio = pio0;        // values: pio0, pio1
-    uint sm = 0;           // values: 1 to 4
-    uint pin_base = 7;     //
+    uint sm;               //
+    uint pin = 7;          //
     uint irq = PIO0_IRQ_0; // values for pio0: PIO0_IRQ_0, PIO0_IRQ_1. values for pio1: PIO1_IRQ_0, PIO1_IRQ_1
     uint baudrate = 9600;
     
-    uart_rx_init(pio, sm, pin, baudrate, irq);
+    sm = uart_rx_init(pio, pin, baudrate, irq);
     uart_rx_set_handler(rx_handler);
 
     while (1)

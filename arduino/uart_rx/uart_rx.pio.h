@@ -61,14 +61,14 @@ typedef void (*uart_rx_handler_t)(uint8_t data);
 static uint sm_uart_rx;
 static PIO pio_uart_rx;
 static void (*uart_rx_handler_p)(uint8_t data) = NULL;
-static inline void uart_rx_init(PIO pio, uint sm, uint pin, uint baudrate, uint irq);
+static inline uint uart_rx_init(PIO pio, uint pin, uint baudrate, uint irq);
 static inline void uart_rx_set_handler(uart_rx_handler_t handler);
 static inline void uart_rx_irq();
-static inline void uart_rx_init(PIO pio, uint sm, uint pin, uint baudrate, uint irq)
+static inline uint uart_rx_init(PIO pio, uint pin, uint baudrate, uint irq)
 {
     pio_uart_rx = pio;
-    sm_uart_rx = sm;
-    pio_sm_set_consecutive_pindirs(pio, sm, pin, 1, false);
+    sm_uart_rx = pio_claim_unused_sm(pio, true);;
+    pio_sm_set_consecutive_pindirs(pio, sm_uart_rx, pin, 1, false);
     pio_gpio_init(pio, pin);
     uint offset = pio_add_program(pio, &uart_rx_program);
     pio_sm_config c = uart_rx_program_get_default_config(offset);
@@ -87,6 +87,7 @@ static inline void uart_rx_init(PIO pio, uint sm, uint pin, uint baudrate, uint 
     pio_sm_set_enabled(pio, sm_uart_rx, true);
     irq_set_exclusive_handler(irq, uart_rx_irq);
     irq_set_enabled(irq, true);
+    return sm_uart_rx;
 }
 static inline void uart_rx_set_handler(uart_rx_handler_t handler)
 {
@@ -103,3 +104,4 @@ static inline void uart_rx_irq()
 }
 
 #endif
+
