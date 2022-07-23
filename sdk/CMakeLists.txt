@@ -10,7 +10,7 @@ pico_sdk_init()
 
 add_executable(${PROJECT_NAME} 
     main.c
-    uart_rx_pio.c
+    uart_rx.c
 )
 
 pico_generate_pio_header(${PROJECT_NAME} ${CMAKE_CURRENT_LIST_DIR}/uart_rx.pio)

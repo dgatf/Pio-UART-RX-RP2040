@@ -18,7 +18,7 @@
 
 extern "C"
 {
-#include "uart_rx_pio.h"
+#include "uart_rx.h"
 }
 
 static void rx_handler(uint8_t data)

@@ -1,4 +1,4 @@
-#include "uart_rx_pio.h"
+#include "uart_rx.h"
 
 static uint sm;
 static PIO pio;
@@ -24,10 +24,10 @@ uint uart_rx_init(PIO pio, uint pin, uint baudrate, uint irq)
     sm_config_set_clkdiv(&c, div);
 
     if (irq == PIO0_IRQ_0 || irq == PIO1_IRQ_0)
-        pio_set_irq0_source_enabled(pio, (enum pio_interrupt_source)(pis_interrupt0 + IRQ_NUM), true);
+        pio_set_irq0_source_enabled(pio, (enum pio_interrupt_source)(pis_interrupt0 + UART_RX_IRQ_NUM), true);
     else
-        pio_set_irq1_source_enabled(pio, (enum pio_interrupt_source)(pis_interrupt0 + IRQ_NUM), true);
-    pio_interrupt_clear(pio, IRQ_NUM);
+        pio_set_irq1_source_enabled(pio, (enum pio_interrupt_source)(pis_interrupt0 + UART_RX_IRQ_NUM), true);
+    pio_interrupt_clear(pio, UART_RX_IRQ_NUM);
 
     pio_sm_init(pio, sm, offset, &c);
     pio_sm_set_enabled(pio, sm, true);
@@ -44,7 +44,7 @@ void uart_rx_set_handler(uart_rx_handler_t handler)
 
 static inline void handler_pio()
 {
-    pio_interrupt_clear(pio, IRQ_NUM);
+    pio_interrupt_clear(pio, UART_RX_IRQ_NUM);
     if (uart_rx_handler)
     {
         uint data = pio_sm_get_blocking(pio, sm);

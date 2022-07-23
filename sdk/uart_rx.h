@@ -1,5 +1,5 @@
-#ifndef UART_RX_PIO
-#define UART_RX_PIO
+#ifndef UART_RX
+#define UART_RX
 
 #include <stdio.h>
 #include "pico/stdlib.h"

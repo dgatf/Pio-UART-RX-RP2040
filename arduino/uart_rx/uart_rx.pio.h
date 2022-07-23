@@ -16,7 +16,7 @@
 #include "hardware/pio.h"
 #endif
 
-#define IRQ_NUM 0
+#define UART_RX_IRQ_NUM 0
 
 // ------- //
 // uart_rx //
@@ -35,7 +35,7 @@ static const uint16_t uart_rx_program_instructions[] = {
     0x20a0, //  5: wait   1 pin, 0                   
     0x0000, //  6: jmp    0                          
     0x8020, //  7: push   block                      
-    0xc000+IRQ_NUM, //  8: irq    nowait 0                   
+    0xc000+UART_RX_IRQ_NUM, //  8: irq    nowait 0                   
             //     .wrap
 };
 

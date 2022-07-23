@@ -6,7 +6,7 @@
  * LICENSE file in the root directory of this source tree. 
  */
 
-.define PUBLIC IRQ_NUM 0  // use 0 to 3
+.define PUBLIC UART_RX_IRQ_NUM 0  // use 0 to 3
 
 .program uart_rx  // 1 bit every 8 cycles
 start:
@@ -20,4 +20,4 @@ bit_loop:
     jmp start
 good_stop:
     push
-    irq IRQ_NUM
+    irq UART_RX_IRQ_NUM
