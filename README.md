@@ -1,12 +1,13 @@
-## Pio UART RX for the RP2040
+## UART RX library for RP2040 using PIO
 
-A pio program that implements the UART protocol, for reception only, for the RP2040. It is compatible with the [SDK](https://raspberrypi.github.io/pico-sdk-doxygen/) and [Arduino](https://github.com/earlephilhower/arduino-pico).
+A library that implements the UART receiver protocol for the RP2040 using PIO. It is compatible with the [SDK](https://raspberrypi.github.io/pico-sdk-doxygen/) and [Arduino](https://github.com/earlephilhower/arduino-pico).
 
 How to use it:
 
 - With SDK. Add *uart_rx.pio, uart_rx.h and uart_rx.c* to your project. Modify CMakeLists.txt. Add *pico_generate_pio_header* and the required libraries (pico_stdlib, hardware_irq, hardware_pio, hardware_clocks). See [CMakeLists.txt](sdk/CMakeLists.txt)
 - With Arduino. Add *uart_rx.pio.h, uart_rx.h and uart_rx.c* to your project  
-- If needed, change the state machine irq with UART_RX_IRQ_NUM. Valid values 0 to 3. Only change if conflicts with other state machines irqs.
+- Change UART_RX_IRQ_NUM if conflicts with other state machines irqs. Valid values 0 to 3.  
+
 
 Functions:  
 
@@ -25,6 +26,10 @@ Returns:
 
 Parameters:  
 &nbsp;&nbsp;**handler** - function to handle bytes reception  
+\
+**void uart_rx_remove()**  
+
+Reset handler and removes pio program from memory.  
 \
 Handler functions:  
 \

@@ -1,18 +1,18 @@
-/**
+/*
  * -------------------------------------------------------------------------------
- *
+ * 
  * Copyright (c) 2022, Daniel Gorbea
  * All rights reserved.
  *
  * This source code is licensed under the MIT-style license found in the
- * LICENSE file in the root directory of this source tree.
- *
+ * LICENSE file in the root directory of this source tree. 
+ * 
  * -------------------------------------------------------------------------------
- *
- *  A pio program that implements a simple uart rx protocol for the RP2040
- *
- *  Rx pin is GPIO7. Baud rate is 9600. Output is usb at 115200
- *
+ * 
+ *  Library that implements uart rx protocol for the RP2040 using PIO
+ * 
+ *  Rx pin is GPIO7. Baud rate is 9600
+ * 
  * -------------------------------------------------------------------------------
  */
 

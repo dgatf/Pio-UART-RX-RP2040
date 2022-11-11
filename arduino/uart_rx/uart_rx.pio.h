@@ -1,14 +1,13 @@
-/**
-   -------------------------------------------------------------------------------
+/*
+ * Copyright (c) 2022, Daniel Gorbea
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT-style license found in the
+ * LICENSE file in the root directory of this source tree. 
+ *
+ * Pio program for UART RX protocol
+ */
 
-   Copyright (c) 2022, Daniel Gorbea
-   All rights reserved.
-
-   This source code is licensed under the MIT-style license found in the
-   LICENSE file in the root directory of this source tree.
-
-   -------------------------------------------------------------------------------
-*/
 
 #pragma once
 
