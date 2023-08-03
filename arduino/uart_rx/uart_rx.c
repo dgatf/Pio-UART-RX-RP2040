@@ -3,7 +3,7 @@
  * All rights reserved.
  *
  * This source code is licensed under the MIT-style license found in the
- * LICENSE file in the root directory of this source tree. 
+ * LICENSE file in the root directory of this source tree.
  *
  * Library for UART RX protocol for RP2040
  */
@@ -14,7 +14,7 @@ static uint sm_, offset_;
 static PIO pio_;
 static void (*handler_)(uint8_t data) = NULL;
 
-static inline void handler_pio();
+static inline void handler_pio(void);
 
 uint uart_rx_init(PIO pio, uint pin, uint baudrate, uint irq)
 {
@@ -53,19 +53,22 @@ void uart_rx_set_handler(uart_rx_handler_t handler)
     handler_ = handler;
 }
 
-void uart_rx_remove()
+void uart_rx_remove(void)
 {
     uart_rx_set_handler(NULL);
     pio_remove_program(pio_, &uart_rx_program, offset_);
     pio_sm_unclaim(pio_, sm_);
 }
 
-static inline void handler_pio()
+static inline void handler_pio(void)
 {
     pio_interrupt_clear(pio_, UART_RX_IRQ_NUM);
     if (handler_)
     {
-        uint data = pio_sm_get_blocking(pio_, sm_);
-        handler_(data >> 24);
+        while (pio_sm_get_rx_fifo_level(pio_, sm_))
+        {
+            uint data = pio_sm_get_blocking(pio_, sm_);
+            handler_(data >> 24);
+        }
     }
 }

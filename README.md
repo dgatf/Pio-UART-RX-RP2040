@@ -27,7 +27,7 @@ Returns:
 Parameters:  
 &nbsp;&nbsp;**handler** - function to handle bytes reception  
 \
-**void uart_rx_remove()**  
+**void uart_rx_remove(void)**  
 
 Reset handler and removes pio program from memory.  
 \

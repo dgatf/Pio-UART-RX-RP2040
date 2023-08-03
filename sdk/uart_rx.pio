@@ -18,7 +18,7 @@ bit_loop:
     in pins 1
     jmp x-- bit_loop [6]
     jmp pin good_stop
-    wait 1 pin 0
+    wait 1 pin 0 [2]
     jmp start
 good_stop:
     push

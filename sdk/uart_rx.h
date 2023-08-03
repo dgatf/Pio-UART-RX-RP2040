@@ -11,8 +11,10 @@
 #ifndef UART_RX
 #define UART_RX
 
-#include <stdio.h>
-#include "pico/stdlib.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "hardware/pio.h"
 #include "hardware/irq.h"
 #include "hardware/clocks.h"
@@ -22,6 +24,10 @@ typedef void (*uart_rx_handler_t)(uint8_t data);
 
 uint uart_rx_init(PIO pio, uint pin, uint baudrate, uint irq);
 void uart_rx_set_handler(uart_rx_handler_t handler);
-void uart_rx_remove();
+void uart_rx_remove(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
