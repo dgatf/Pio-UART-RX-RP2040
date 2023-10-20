@@ -21,6 +21,7 @@ target_link_libraries(${PROJECT_NAME}
     pico_stdlib
     hardware_irq
     hardware_pio
+    hardware_dma
 )
 
 pico_enable_stdio_usb(${PROJECT_NAME} 1)

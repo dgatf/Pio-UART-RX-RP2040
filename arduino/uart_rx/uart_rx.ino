@@ -1,26 +1,26 @@
 /*
  * -------------------------------------------------------------------------------
- * 
+ *
  * Copyright (c) 2022, Daniel Gorbea
  * All rights reserved.
  *
  * This source code is licensed under the MIT-style license found in the
- * LICENSE file in the root directory of this source tree. 
- * 
+ * LICENSE file in the root directory of this source tree.
+ *
  * -------------------------------------------------------------------------------
- * 
+ *
  *  Library that implements uart rx protocol for the RP2040 using PIO
- * 
+ *
  *  Rx pin is GPIO0. Baud rate is 9600
- * 
+ *
  * -------------------------------------------------------------------------------
  */
 
 #include "uart_rx.h"
 
-static void rx_handler(uint8_t data)
+void rx_handler(void)
 {
-    Serial.print((char)data);
+    // if a quick response is needed, use this interrupt...
 }
 
 void setup()
@@ -32,10 +32,13 @@ void setup()
     uint irq = PIO0_IRQ_0; // values for pio0: PIO0_IRQ_0, PIO0_IRQ_1. values for pio1: PIO1_IRQ_0, PIO1_IRQ_1
     uint baudrate = 9600;
 
-    uart_rx_init(pio, pin, baudrate, irq);
-    uart_rx_set_handler(rx_handler);
+    uart_rx_init(pio, pin, baudrate);
+    uart_rx_set_handler(rx_handler, irq);
 }
 
 void loop()
 {
+    // ...or poll the buffer
+    while (uart_rx_available())
+        Serial.print(uart_rx_read());
 }
