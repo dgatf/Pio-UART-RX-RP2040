@@ -9,6 +9,7 @@
 #endif
 
 #define UART_RX_IRQ_NUM 0
+#define UART_RX_CYCLES_PER_BIT 16
 
 // ------- //
 // uart_rx //
@@ -20,14 +21,14 @@
 static const uint16_t uart_rx_program_instructions[] = {
             //     .wrap_target
     0x2020, //  0: wait   0 pin, 0                   
-    0xea27, //  1: set    x, 7                   [10]
+    0xf627, //  1: set    x, 7                   [22]
     0x4001, //  2: in     pins, 1                    
-    0x0642, //  3: jmp    x--, 2                 [6] 
+    0x0e42, //  3: jmp    x--, 2                 [14]
     0x00c7, //  4: jmp    pin, 7                     
-    0x22a0, //  5: wait   1 pin, 0               [2] 
+    0x24a0, //  5: wait   1 pin, 0               [4] 
     0x0000, //  6: jmp    0                          
     0x8020, //  7: push   block                      
-    0xc000+UART_RX_IRQ_NUM, //  8: irq    nowait 0                    
+    0xc000, //  8: irq    nowait 0                   
             //     .wrap
 };
 

@@ -1,6 +1,6 @@
 ## UART RX library for RP2040
 
-A library that implements the UART receiver protocol for the RP2040 using PIO and a DMA buffer.
+A library that implements the UART receiver protocol for the RP2040 using PIO and a DMA buffer (optional).
 
 It is compatible with the [SDK](https://raspberrypi.github.io/pico-sdk-doxygen/) and [Arduino](https://github.com/earlephilhower/arduino-pico).
 
@@ -14,6 +14,7 @@ How to use it:
 Library parameters:
 
 **UART_RX_BUFFER_RING_BITS**. Bit mask for the ring buffer. **BUFFER_SIZE = 1 << UART_RX_BUFFER_RING_BITS**  
+**UART_RX_DMA**. 1 to enable DMA buffer, 0 to disable DMA buffer. If enabled, the library uses 2 DMA channels.
 
 Functions:  
 
@@ -56,7 +57,7 @@ Returns:
 \
 **void uart_rx_remove(void)**  
 
-Reset handler, remove pio program from memory and free DMA channel   
+Reset handler, remove pio program from memory and free DMA channel if enabled   
 \
 Handler functions:  
 \

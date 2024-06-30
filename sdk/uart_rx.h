@@ -22,6 +22,7 @@ extern "C"
 #include "hardware/dma.h"
 #include "uart_rx.pio.h"
 
+#define UART_RX_DMA 1  // 1 = enable dma, 0 = disable dma
 #define UART_RX_BUFFER_RING_BITS 8
 
     typedef void (*uart_rx_handler_t)(void);
