@@ -1,6 +1,3 @@
 {
-    "files.associations": {
-        "stdio.h": "c"
-    },
     "cmake.sourceDirectory": "${workspaceFolder}/sdk"
 }
